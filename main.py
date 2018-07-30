@@ -5,7 +5,11 @@ from flask import Flask, send_file, Response, redirect, render_template
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY').encode()
+# app.secret_key = os.environ.get('SECRET_KEY').encode()
+# Recommand removing this line. In previous projects, we used a secret_key because
+# we were storing variables into the user's session. But we are not storing variables
+# in the user's session. Removing this line makes it so that we can run the program without
+# settings a SECRET_KEY environment variable.
 
 
 def get_fact():
