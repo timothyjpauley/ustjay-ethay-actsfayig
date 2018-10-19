@@ -32,12 +32,9 @@ def home():
 #    return ('The pig latin for "{}" is: {}').format(payload['input_text'], pig_latin)
     
     r = requests.post(url, payload, allow_redirects=False)
-    r1 = r.content.decode()
-    redirect = r1.replace('href="', 'href="' + url_short)
-    redirect = redirect.replace('">', '">' + url_short)
-    #print(redirect)
+    address = r.headers['Location']
     
-    return redirect
+    return address
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 6787))
