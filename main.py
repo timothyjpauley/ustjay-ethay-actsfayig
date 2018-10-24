@@ -20,10 +20,9 @@ def get_fact():
 def translate_facts(fact):
     data = {'input_text': str(fact)}
     response = requests.post(URL, data=data)
-    response_url = a=requests.post(URL, data=data, allow_redirects=False)
+    response_url = requests.post(URL, data=data, allow_redirects=False).headers['Location']
     soup = BeautifulSoup(response.text, 'html.parser')
-    soup_url = BeautifulSoup(response_url.text, 'html.parser')
-    return soup.find('body').text.strip().splitlines()[-1].strip(), soup_url.find('a').text
+    return soup.find('body').text.strip().splitlines()[-1].strip(), response_url
 
 
 @app.route('/')
